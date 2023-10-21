@@ -290,6 +290,9 @@ async def ConnectMetaTrader(update: Update, trade: dict, enterTrade: bool):
                     for takeProfit in trade['TP']:
                         result = await connection.create_stop_sell_order(trade['Symbol'], trade['PositionSize'] / len(trade['TP']), trade['Entry'], trade['StopLoss'], takeProfit)
                 
+                
+                print('open orders:', await connection.get_orders())
+
                 # sends success message to user
                 update.effective_message.reply_text("Trade entered successfully! 💰")
                 
